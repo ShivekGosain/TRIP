@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Janhavi's Varanasi Adventure</title>
+<style>
+body{
+ margin:0;
+ font-family: 'Segoe UI', sans-serif;
+ color:white;
+ text-align:center;
+ background:url('https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=1600&q=80') center/cover fixed;
+}
+.overlay{
+ min-height:100vh;
+ background:rgba(0,0,0,.60);
+ padding:30px;
+}
+button{
+ padding:14px 24px;
+ border:none;
+ border-radius:30px;
+ cursor:pointer;
+ margin:10px;
+ font-size:18px;
+}
+#yesBtn{transition:all .3s ease;}
+.hidden{display:none;}
+.card{
+ max-width:800px;
+ margin:20px auto;
+ background:rgba(255,255,255,.12);
+ border-radius:18px;
+ padding:20px;
+}
+#modal{
+ display:none;
+ position:fixed;
+ inset:0;
+ background:rgba(0,0,0,.6);
+}
+.modal-box{
+ background:white;
+ color:#333;
+ max-width:420px;
+ margin:20vh auto;
+ padding:25px;
+ border-radius:18px;
+}
+</style>
+</head>
+<body>
+<div class="overlay">
+
+<div id="question">
+<h1>Dear Janhavi,<br>Would you honor me by joining me on a little adventure to Varanasi? ❤️</h1>
+<p>A journey of sunsets, boat rides, ghats, food and beautiful memories.</p>
+<button id="yesBtn">Yes, I'd Love To ❤️</button>
+<button id="noBtn">No 🙈</button>
+</div>
+
+<div id="love" class="hidden">
+<h1>I Love You, Janhavi ❤️</h1>
+<p>
+Thank you for saying yes.<br><br>
+I don't know what memories we'll make,
+what photos we'll take,
+or what stories we'll bring back from Varanasi.<br><br>
+But I'd love to experience it all with you.
+</p>
+<button onclick="showItinerary()">✨ Show Me Our Varanasi Adventure ✨</button>
+</div>
+
+<div id="itinerary" class="hidden">
+<h1>❤️ Our Varanasi Adventure ❤️</h1>
+
+<div class="card">
+<h2>Day 1 - Sarnath & Scooty Exploration</h2>
+<p>Rent a scooty, explore Sarnath, peaceful walks and evening tea.</p>
+</div>
+
+<div class="card">
+<h2>Day 2 - Sunrise, Ghats & Food</h2>
+<p>Sunrise boat ride, ghats, temples, Banarasi breakfast, pizza, apple pie and Ganga Aarti.</p>
+</div>
+
+<div class="card">
+<h2>Day 3 - Sunset Together</h2>
+<p>Relax by the riverside sandbank, click photos and watch the sunset together.</p>
+</div>
+
+<div class="card">
+<h2>Day 4 - Food, Shopping & Memories</h2>
+<p>Local dishes, shopping, souvenirs and final memories together.</p>
+</div>
+
+<h2>My favorite part of any journey is the person beside me. ❤️</h2>
+<h3>— Shivek</h3>
+</div>
+
+</div>
+
+<div id="modal">
+  <div class="modal-box">
+    <h3>🥺 Important Notice</h3>
+    <p id="modalText"></p>
+    <button onclick="closeModal()">Okay Fine 😆</button>
+  </div>
+</div>
+
+<audio autoplay loop>
+<source src="C:\Users\gosai\DATA SCIENCE\Downloads\prettyjohn1-romantic-486823.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const msgs=[
+"Are you sure? The scooty has already been booked for us 🛵🥺",
+"The sunrise boat ride won't be the same without you 🚣❤️",
+"Even the Ganga Aarti is waiting for us together ✨",
+"The apple pie is getting cold while you decide 🍎🥧😭",
+"The sunset has already imagined us sitting together 🌅❤️"
+];
+
+let c=0;
+const noBtn=document.getElementById("noBtn");
+const yesBtn=document.getElementById("yesBtn");
+
+function showModal(msg){
+ document.getElementById("modalText").innerText=msg;
+ document.getElementById("modal").style.display="block";
+}
+function closeModal(){
+ document.getElementById("modal").style.display="none";
+}
+
+noBtn.onclick=function(){
+ if(c<msgs.length){
+   showModal(msgs[c]);
+   c++;
+   yesBtn.style.transform=`scale(${1+c*0.15})`;
+   noBtn.style.transform=`translate(${Math.random()*250-125}px,${Math.random()*120-60}px)`;
+ } else {
+   showModal("The universe has made its decision. ✨");
+   noBtn.style.display="none";
+   yesBtn.style.transform="scale(2)";
+ }
+}
+
+yesBtn.onclick=function(){
+ document.getElementById("question").classList.add("hidden");
+ document.getElementById("love").classList.remove("hidden");
+}
+
+function showItinerary(){
+ document.getElementById("love").classList.add("hidden");
+ document.getElementById("itinerary").classList.remove("hidden");
+}
+</script>
+</body>
+</html>
